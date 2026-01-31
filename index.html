@@ -1535,11 +1535,18 @@ window.STORMSCAN_CONFIG = {
             notification.className = 'copy-notification';
             notification.innerHTML = '✓ Code Copied! Paste into GHL Footer Tracking Code';
             document.body.appendChild(notification);
-            
+
             setTimeout(() => {
                 notification.style.animation = 'slideIn 0.3s ease reverse';
                 setTimeout(() => notification.remove(), 300);
             }, 2500);
+
+            // Trigger review popup after 3 seconds (peak-end rule)
+            setTimeout(() => {
+                if (window.showReviewPopup) {
+                    window.showReviewPopup();
+                }
+            }, 3000);
         };
 
         // FAQ Toggle
@@ -1577,5 +1584,7 @@ window.STORMSCAN_CONFIG = {
         });
     </script>
 
+    <!-- Review Popup - Triggers after widget code is copied -->
+    <script src="review-popup.js"></script>
 </body>
 </html>
