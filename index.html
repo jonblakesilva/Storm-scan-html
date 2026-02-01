@@ -406,33 +406,74 @@
             </div>
             
             <div id="inline-state-result" style="display: none;">
-                <div style="margin-bottom: 20px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 12px; text-align: center;">
-                    <div style="font-size: 13px; font-weight: 900; color: #856404;">⚠️ MAINTENANCE RECOMMENDED</div>
+                <!-- Risk Header with Score -->
+                <div id="inline-risk-header" style="margin-bottom: 16px; padding: 14px 16px; background: rgba(251, 191, 36, 0.15); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 13px; font-weight: 900; color: #92400e; margin-bottom: 4px;">🟠 MEDIUM RISK - ACTION RECOMMENDED</div>
+                    <div style="font-size: 11px; color: #92400e; opacity: 0.9;">📍 ZIP <span id="inline-res-zip">90210</span> • Risk Score: <span id="inline-risk-score">65</span>/100</div>
                 </div>
-                
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; font-family: monospace; font-size: 12px; color: #1e293b;">
-                    <div style="font-weight: 900; border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 12px;">📋 HISTORY REPORT</div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #cbd5e1;">
-                        <span>💨 Peak Wind</span>
-                        <strong id="inline-res-wind" style="color: #dc2626;">62.4 MPH</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #cbd5e1;">
-                        <span>🌧️ Peak Rain</span>
-                        <strong id="inline-res-rain" style="color: #2563eb;">1.85"</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                        <span>📍 ZIP</span>
-                        <strong id="inline-res-zip">90210</strong>
+
+                <!-- Loss Aversion -->
+                <div id="inline-loss-aversion" style="margin-bottom: 16px; padding: 16px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%); border: 2px solid #fca5a5; border-radius: 12px;">
+                    <div style="font-size: 13px; font-weight: 900; color: #dc2626; margin-bottom: 10px;">🚨 WITHOUT ACTION - EXPECT:</div>
+                    <div style="font-size: 12px; color: #1f2937; line-height: 1.7;" id="inline-damage-estimate">
+                        💰 $3,000-$8,000 in preventable damage<br>
+                        🏚️ 5-10% property value decrease<br>
+                        🌳 30-40% deterioration risk<br>
+                        🚨 $1,500-$4,000 emergency repair costs
                     </div>
                 </div>
-                
-                <div style="margin-bottom: 20px; padding: 16px; background: rgba(0, 212, 170, 0.05); border-radius: 12px; font-size: 12px; line-height: 1.6; color: #1e293b;" id="inline-risk-explanation">
-                    <strong style="color: #00d4aa; display: block; margin-bottom: 8px;">🏠 What This Means:</strong>
-                    Wind speeds above 60mph can create damage to your property.
+
+                <!-- Weather Data -->
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 16px;">
+                    <div style="font-weight: 900; font-size: 13px; border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 12px; color: #1e293b;">📊 YOUR PROPERTY ANALYSIS</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #cbd5e1;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">💨 Peak Wind</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 60MPH</div></div>
+                        <div style="text-align: right;"><strong id="inline-res-wind" style="font-size: 16px; color: #dc2626;">62.4 MPH</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #cbd5e1;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">🌧️ Peak Rain</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 1.5"</div></div>
+                        <div style="text-align: right;"><strong id="inline-res-rain" style="font-size: 16px; color: #2563eb;">1.85"</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">❄️ Peak Snow</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 12"</div></div>
+                        <div style="text-align: right;"><strong id="inline-res-snow" style="font-size: 16px; color: #0891b2;">0.0"</strong></div>
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12px; color: #64748b;">🎯 Combined Risk</span>
+                        <strong id="inline-combined-risk" style="font-size: 14px; color: #f59e0b;">65/100</strong>
+                    </div>
                 </div>
-                
+
+                <!-- Urgency Timeline -->
+                <div id="inline-urgency" style="margin-bottom: 16px; padding: 14px 16px; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%); border: 2px solid #fbbf24; border-radius: 12px;">
+                    <div style="font-size: 12px; font-weight: 900; color: #d97706; margin-bottom: 8px;">⏰ CRITICAL TIMELINE</div>
+                    <div style="font-size: 11px; color: #1f2937; line-height: 1.8;">
+                        <div style="margin-bottom: 4px;">• <strong>Next 48 hours:</strong> Highest risk window for damage</div>
+                        <div style="margin-bottom: 4px;">• <strong>This week:</strong> Conditions worsen with each storm</div>
+                        <div>• <strong>Next 30 days:</strong> Peak vulnerability period</div>
+                    </div>
+                </div>
+
+                <!-- Social Proof -->
+                <div style="margin-bottom: 16px; padding: 12px 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.03) 100%); border-left: 4px solid #10b981; border-radius: 8px;">
+                    <div style="font-size: 11px; color: #065f46; line-height: 1.7;">
+                        <div style="font-weight: 900; margin-bottom: 6px;">✅ THIS MONTH IN YOUR AREA:</div>
+                        <div style="margin-bottom: 3px; color: #1f2937;">• 847 homeowners protected their properties</div>
+                        <div style="margin-bottom: 3px; color: #1f2937;">• 73 residents in <span id="inline-social-zip">your area</span> requested assessments</div>
+                        <div style="color: #1f2937;">• Avg. damage prevented: <strong>$12,400</strong> per property</div>
+                    </div>
+                </div>
+
                 <div id="inline-form-container"></div>
-                
+
+                <!-- Trust Signals -->
+                <div style="text-align: center; padding: 12px; background: #f8fafc; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="font-size: 10px; color: #64748b; line-height: 1.6;">
+                        🔒 Your info is secure • ⚡ 2-hour response time<br>
+                        ✅ No obligation • 📞 Call back guarantee
+                    </div>
+                </div>
+
                 <button onclick="resetInlineDemo()" style="width: 100%; background: transparent; border: none; color: #64748b; text-decoration: underline; cursor: pointer; font-size: 12px; font-weight: 800; font-family: inherit; padding: 12px;">
                     🔄 CHECK ANOTHER ADDRESS
                 </button>
@@ -467,42 +508,74 @@
             </div>
             
             <div id="demo-state-result" style="display: none;">
-                <div style="margin-bottom: 20px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 12px; text-align: center;">
-                    <div style="font-size: 13px; font-weight: 900; color: #856404;">⚠️ MAINTENANCE RECOMMENDED</div>
+                <!-- Risk Header with Score -->
+                <div id="demo-risk-header" style="margin-bottom: 16px; padding: 14px 16px; background: rgba(251, 191, 36, 0.15); border: 2px solid #f59e0b; border-radius: 12px; text-align: center;">
+                    <div id="demo-risk-label" style="font-size: 13px; font-weight: 900; color: #92400e; margin-bottom: 4px;">🟠 MEDIUM RISK - ACTION RECOMMENDED</div>
+                    <div style="font-size: 11px; color: #92400e; opacity: 0.9;">📍 ZIP <span id="demo-res-zip">90210</span> • Risk Score: <span id="demo-risk-score">65</span>/100</div>
                 </div>
-                
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; font-family: monospace; font-size: 12px;">
-                    <div style="font-weight: 900; border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 12px;">📋 HISTORY REPORT</div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #cbd5e1;">
-                        <span>💨 Peak Wind</span>
-                        <strong id="demo-res-wind" style="color: #dc2626;">62.4 MPH</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed #cbd5e1;">
-                        <span>🌧️ Peak Rain</span>
-                        <strong id="demo-res-rain" style="color: #2563eb;">1.85"</strong>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; padding: 8px 0;">
-                        <span>📍 ZIP</span>
-                        <strong id="demo-res-zip">90210</strong>
+
+                <!-- Loss Aversion -->
+                <div id="demo-loss-aversion" style="margin-bottom: 16px; padding: 16px; background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%); border: 2px solid #fca5a5; border-radius: 12px;">
+                    <div style="font-size: 13px; font-weight: 900; color: #dc2626; margin-bottom: 10px;">🚨 WITHOUT ACTION - EXPECT:</div>
+                    <div style="font-size: 12px; color: #1f2937; line-height: 1.7;" id="demo-damage-estimate">
+                        💰 $3,000-$8,000 in preventable damage<br>
+                        🏚️ 5-10% property value decrease<br>
+                        🌳 30-40% deterioration risk<br>
+                        🚨 $1,500-$4,000 emergency repair costs
                     </div>
                 </div>
-                
-                <div style="margin-bottom: 20px; padding: 16px; background: rgba(0, 212, 170, 0.05); border-radius: 12px; font-size: 12px; line-height: 1.6;">
-                    <strong style="color: #00d4aa; display: block; margin-bottom: 8px;">🏠 What This Means:</strong>
-                    Wind speeds above 60mph can lift shingles and create water entry points. Combined with heavy rain, minor damage turns into major leaks.
-                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0, 212, 170, 0.2);">
-                        <strong style="color: #00d4aa; display: block; margin-bottom: 6px;">⏰ Why Act Now?</strong>
-                        <ul style="margin: 8px 0 0 20px; padding: 0; line-height: 1.8;">
-                            <li>Hidden damage worsens over time</li>
-                            <li>Insurance claims require documentation</li>
-                            <li>Prevent costly emergency repairs</li>
-                            <li>Free inspection spots fill up fast</li>
-                        </ul>
+
+                <!-- Weather Data -->
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 16px;">
+                    <div style="font-weight: 900; font-size: 13px; border-bottom: 2px solid #1e293b; padding-bottom: 8px; margin-bottom: 12px; color: #1e293b;">📊 YOUR PROPERTY ANALYSIS</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #cbd5e1;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">💨 Peak Wind</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 60MPH</div></div>
+                        <div style="text-align: right;"><strong id="demo-res-wind" style="font-size: 16px; color: #dc2626;">62.4 MPH</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #cbd5e1;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">🌧️ Peak Rain</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 1.5"</div></div>
+                        <div style="text-align: right;"><strong id="demo-res-rain" style="font-size: 16px; color: #2563eb;">1.85"</strong></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
+                        <div><div style="font-size: 11px; color: #64748b; margin-bottom: 2px;">❄️ Peak Snow</div><div style="font-size: 10px; color: #94a3b8;">Threshold: 12"</div></div>
+                        <div style="text-align: right;"><strong id="demo-res-snow" style="font-size: 16px; color: #0891b2;">0.0"</strong></div>
+                    </div>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12px; color: #64748b;">🎯 Combined Risk</span>
+                        <strong id="demo-combined-risk" style="font-size: 14px; color: #f59e0b;">65/100</strong>
                     </div>
                 </div>
-                
+
+                <!-- Urgency Timeline -->
+                <div id="demo-urgency" style="margin-bottom: 16px; padding: 14px 16px; background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%); border: 2px solid #fbbf24; border-radius: 12px;">
+                    <div style="font-size: 12px; font-weight: 900; color: #d97706; margin-bottom: 8px;">⏰ CRITICAL TIMELINE</div>
+                    <div style="font-size: 11px; color: #1f2937; line-height: 1.8;">
+                        <div style="margin-bottom: 4px;">• <strong>Next 48 hours:</strong> Highest risk window for damage</div>
+                        <div style="margin-bottom: 4px;">• <strong>This week:</strong> Conditions worsen with each storm</div>
+                        <div>• <strong>Next 30 days:</strong> Peak vulnerability period</div>
+                    </div>
+                </div>
+
+                <!-- Social Proof -->
+                <div style="margin-bottom: 16px; padding: 12px 14px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.03) 100%); border-left: 4px solid #10b981; border-radius: 8px;">
+                    <div style="font-size: 11px; color: #065f46; line-height: 1.7;">
+                        <div style="font-weight: 900; margin-bottom: 6px;">✅ THIS MONTH IN YOUR AREA:</div>
+                        <div style="margin-bottom: 3px; color: #1f2937;">• 847 homeowners protected their properties</div>
+                        <div style="margin-bottom: 3px; color: #1f2937;">• 73 residents in <span id="demo-social-zip">your area</span> requested assessments</div>
+                        <div style="color: #1f2937;">• Avg. damage prevented: <strong>$12,400</strong> per property</div>
+                    </div>
+                </div>
+
                 <div id="demo-form-container"></div>
-                
+
+                <!-- Trust Signals -->
+                <div style="text-align: center; padding: 12px; background: #f8fafc; border-radius: 8px; margin-bottom: 12px;">
+                    <div style="font-size: 10px; color: #64748b; line-height: 1.6;">
+                        🔒 Your info is secure • ⚡ 2-hour response time<br>
+                        ✅ No obligation • 📞 Call back guarantee
+                    </div>
+                </div>
+
                 <button onclick="resetDemo()" style="width: 100%; background: transparent; border: none; color: #64748b; text-decoration: underline; cursor: pointer; font-size: 12px; font-weight: 800; font-family: inherit; padding: 12px;">
                     🔄 CHECK ANOTHER ADDRESS
                 </button>
@@ -1207,39 +1280,6 @@
             document.getElementById('inline-demo-subheadline').innerText = cfg.subheadline;
             document.getElementById('inline-widget-title').innerText = '⛈️ ' + template.hook.toUpperCase();
             
-            // Update risk explanation based on industry
-            const riskExplanations = {
-                roofer: 'Wind speeds above 60mph can lift shingles, compromise flashing, and create water entry points. Combined with heavy rain, minor damage compounds into major leaks.',
-                arborist: 'High winds can stress tree root systems and create weak points. Trees with compromised structure pose falling risks to property and safety.',
-                solar: 'Wind and debris can damage solar panels, reducing efficiency. Rain and soiling decrease energy production over time.',
-                pest: 'Heavy rain creates moisture intrusion, attracting pests. Temperature extremes drive insects and rodents to seek shelter indoors.',
-                hvac: 'Extreme temperatures force HVAC systems to work overtime, increasing wear and energy costs. Temperature stress shortens equipment lifespan.',
-                lawn: 'Drought conditions stress grass and soil, requiring intervention. Without proper hydration, lawns become vulnerable to disease and pests.',
-                gutter: 'Heavy rainfall combined with wind can overwhelm gutters, causing overflow and foundation damage. Clogged gutters compound the problem.',
-                hoa: 'Multiple weather hazards can impact common areas, amenities, and individual properties. Proactive assessment helps protect community assets and property values.',
-                property: 'Weather-related damage creates liability concerns for property managers. Early detection prevents tenant complaints, reduces vacancy, and minimizes repair costs.',
-                general: 'Multiple weather factors can impact your property. Wind, rain, and temperature extremes all contribute to wear and potential damage.'
-            };
-            
-            const explanation = document.getElementById('inline-risk-explanation');
-            if (explanation) {
-                const propertyLabels = {
-                    roofer: 'Roof',
-                    arborist: 'Trees',
-                    solar: 'Solar System',
-                    lawn: 'Lawn',
-                    hoa: 'Community',
-                    property: 'Properties',
-                    pest: 'Property',
-                    hvac: 'HVAC System',
-                    gutter: 'Gutters',
-                    general: 'Property'
-                };
-                
-                explanation.querySelector('strong').innerText = '🏠 What This Means for Your ' + (propertyLabels[industry] || 'Property') + ':';
-                explanation.innerHTML = explanation.innerHTML.split('</strong>')[0] + '</strong>' + 
-                    riskExplanations[industry];
-            }
         }
 
         function runDemo() {
@@ -1273,48 +1313,122 @@
             const bar = document.getElementById(prefix + '-progress');
             const flash = document.getElementById(prefix + '-social-flash');
             const title = document.getElementById(prefix + '-scan-title');
-            
+
             const msgs = [
-                "📡 Locating coordinates...", 
-                "📡 Accessing NOAA servers...", 
-                "📡 4 neighbors scanned this week...", 
+                "📡 Locating coordinates...",
+                "📡 Accessing NOAA servers...",
+                "📡 4 neighbors scanned this week...",
                 "📡 Analyzing 12-month data...",
                 "📡 Generating report..."
             ];
-            
+
             const titles = ["CONNECTING...", "SCANNING...", "ANALYZING...", "PROCESSING...", "FINALIZING..."];
-            
+
             let p = 0;
             const iv = setInterval(() => {
                 p += 1;
                 bar.style.width = p + '%';
-                
+
                 const msgIdx = Math.floor((p / 100) * msgs.length);
                 const titleIdx = Math.floor((p / 100) * titles.length);
-                
+
                 if (msgIdx < msgs.length) flash.innerText = msgs[msgIdx];
                 if (titleIdx < titles.length) title.innerText = titles[titleIdx];
-                
+
                 if (p >= 100) {
                     clearInterval(iv);
-                    
+
                     const windSpeed = (Math.random() * 25 + 50).toFixed(1);
                     const rainAmount = (Math.random() * 2 + 0.8).toFixed(2);
-                    
+                    const snowAmount = (Math.random() * 5).toFixed(1);
+
+                    // Calculate risk score (0-100)
+                    const windScore = (windSpeed / cfg.wind) * 40;
+                    const rainScore = (rainAmount / cfg.rain) * 35;
+                    const snowScore = (snowAmount / cfg.snow) * 25;
+                    const riskScore = Math.min(Math.round(windScore + rainScore + snowScore), 100);
+
+                    // Get risk level styling
+                    let riskLabel, riskBg, riskBorder, riskTextColor, riskIcon;
+                    if (riskScore >= 70) {
+                        riskLabel = 'HIGH RISK - IMMEDIATE ACTION REQUIRED';
+                        riskBg = 'rgba(239, 68, 68, 0.15)';
+                        riskBorder = '#dc2626';
+                        riskTextColor = '#991b1b';
+                        riskIcon = '🔴';
+                    } else if (riskScore >= 40) {
+                        riskLabel = 'MEDIUM RISK - ACTION RECOMMENDED';
+                        riskBg = 'rgba(251, 191, 36, 0.15)';
+                        riskBorder = '#f59e0b';
+                        riskTextColor = '#92400e';
+                        riskIcon = '🟠';
+                    } else {
+                        riskLabel = 'LOW RISK - PREVENTIVE MAINTENANCE SUGGESTED';
+                        riskBg = 'rgba(16, 185, 129, 0.15)';
+                        riskBorder = '#10b981';
+                        riskTextColor = '#065f46';
+                        riskIcon = '✅';
+                    }
+
+                    const isHighRisk = riskScore >= 40;
+
+                    // Update weather data
                     document.getElementById(prefix + '-res-wind').innerText = windSpeed + " MPH";
                     document.getElementById(prefix + '-res-rain').innerText = rainAmount + '"';
                     document.getElementById(prefix + '-res-zip').innerText = zip;
-                    
+
+                    // Update snow if element exists
+                    const snowEl = document.getElementById(prefix + '-res-snow');
+                    if (snowEl) snowEl.innerText = snowAmount + '"';
+
+                    // Update risk header
+                    const riskHeader = document.getElementById(prefix + '-risk-header');
+                    if (riskHeader) {
+                        riskHeader.style.background = riskBg;
+                        riskHeader.style.borderColor = riskBorder;
+                        riskHeader.querySelector('div').style.color = riskTextColor;
+                        riskHeader.querySelector('div').innerText = riskIcon + ' ' + riskLabel;
+                    }
+
+                    // Update risk label if separate element
+                    const riskLabelEl = document.getElementById(prefix + '-risk-label');
+                    if (riskLabelEl) {
+                        riskLabelEl.style.color = riskTextColor;
+                        riskLabelEl.innerText = riskIcon + ' ' + riskLabel;
+                    }
+
+                    // Update risk score displays
+                    const riskScoreEl = document.getElementById(prefix + '-risk-score');
+                    if (riskScoreEl) riskScoreEl.innerText = riskScore;
+
+                    const combinedRiskEl = document.getElementById(prefix + '-combined-risk');
+                    if (combinedRiskEl) {
+                        combinedRiskEl.innerText = riskScore + '/100';
+                        combinedRiskEl.style.color = riskBorder;
+                    }
+
+                    // Update social proof ZIP
+                    const socialZipEl = document.getElementById(prefix + '-social-zip');
+                    if (socialZipEl) socialZipEl.innerText = zip;
+
+                    // Show/hide loss aversion based on risk
+                    const lossAversion = document.getElementById(prefix + '-loss-aversion');
+                    if (lossAversion) lossAversion.style.display = isHighRisk ? 'block' : 'none';
+
+                    // Show/hide urgency based on risk
+                    const urgency = document.getElementById(prefix + '-urgency');
+                    if (urgency) urgency.style.display = isHighRisk ? 'block' : 'none';
+
                     // Show form with data
                     if (cfg.ghl && cfg.ghl.trim()) {
                         const formContainer = document.getElementById(prefix + '-form-container');
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = cfg.ghl;
                         const iframe = tempDiv.querySelector('iframe');
-                        
+
                         if (iframe) {
                             const separator = iframe.src.includes('?') ? '&' : '?';
-                            iframe.src += separator + 'wind_speed=' + windSpeed + '&rain=' + rainAmount + '&zip=' + zip;
+                            iframe.src += separator + 'wind_speed=' + windSpeed + '&rain=' + rainAmount + '&snow=' + snowAmount + '&zip=' + zip + '&risk_score=' + riskScore;
                             iframe.style.width = '100%';
                             iframe.style.height = '600px';
                             iframe.style.border = 'none';
@@ -1326,7 +1440,7 @@
                             formContainer.innerHTML = cfg.ghl;
                         }
                     }
-                    
+
                     document.getElementById(prefix + '-state-scanning').style.display = 'none';
                     document.getElementById(prefix + '-state-result').style.display = 'block';
                 }
